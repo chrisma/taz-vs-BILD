@@ -1,0 +1,32 @@
+* {
+	margin: 0;
+}
+
+body, html {
+	height: 100%;
+	padding: 0;
+}
+
+#content {
+	height: 95%;
+	padding-top: 15px;
+	text-align: center;
+}
+
+#content img {
+	height: 100%;
+	border: 1px solid gray;
+}
+
+img#left {
+	margin-right: 15px;
+}
+
+footer {
+	font-size: 12px;
+	font-family: Verdana, sans-serif;
+	position: absolute;
+	bottom: 2px;
+	padding-left: 2px;
+	background-color: white;
+}
