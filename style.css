@@ -18,13 +18,13 @@ body, html {
 	border: 1px solid gray;
 }
 
-img#left {
+img#taz {
 	margin-right: 15px;
 }
 
 footer {
 	font-size: 12px;
-	font-family: Verdana, sans-serif;
+	font-family: Open Sans, Verdana, sans-serif;
 	position: absolute;
 	bottom: 2px;
 	padding-left: 2px;

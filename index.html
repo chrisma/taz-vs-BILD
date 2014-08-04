@@ -7,21 +7,33 @@
   	</head>
 	<body>
 		<div id="content">
-			<img id="left" src="GER_TAZ.jpg">
-			<img id="right" src="GER_BILD.jpg">
+			<img class="paper" id="taz" src="spinner.gif">
+			<img class="paper" id="bild" src="spinner.gif">
 		</div>
 		<footer>Front pages from the <a href="http://www.newseum.org/">Newseum</a> | Built by <a href="https://twitter.com/chrisma0">chrisma0</a> | Hosted on <a href="https://github.com/chrisma/taz-vs-BILD">Github</a></footer>
 		<script type="text/javascript">
-			var left = document.getElementById('left');
-			var right = document.getElementById('right');
+			function construct_url(date, paper) {
+				// URLs are in the format:
+				// http://webmedia.newseum.org/newseum-multimedia/dfp/jpg10/lg/GER_BILD.jpg
+				paper = paper.toUpperCase();
+				var url = 'http://webmedia.newseum.org/newseum-multimedia/dfp/jpg' + date + '/lg/GER_' + paper + '.jpg';
+				return url
+			}
+
+			var imgs = document.getElementsByClassName('paper');
 			var today = new Date().getUTCDate();
-			// URLs are in the format:
-			// http://webmedia.newseum.org/newseum-multimedia/dfp/jpg10/lg/GER_BILD.jpg
-			var url = 'http://webmedia.newseum.org/newseum-multimedia/dfp/jpg' + today + '/lg/';
-			var bildUrl = url + 'GER_BILD.jpg';
-			var tazUrl = url + 'GER_TAZ.jpg'
-			left.src = tazUrl;
-			right.src = bildUrl;
+			// If today's front page 404s, use yesterday's
+			imgs.onerror = function() {
+				yesterday_url = construct_url(today-1, this.id);
+				if (this.src === yesterday_url) {
+					console.log("Today's and yesterday's URLs invalid.");
+					return
+				}
+				this.src = yesterday_url;
+			}
+
+			document.getElementById('taz').src = construct_url(today, 'taz');
+			document.getElementById('bild').src = construct_url(today, 'bild');
 			
 		</script>
 	</body>
